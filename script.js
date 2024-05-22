@@ -18,6 +18,37 @@ const renderNewQuote = async () => {
   quoteSection.innerHTML += arr.join("");
 };
 
+userInput.addEventListener("input", () => {
+  let quoteChars = document.querySelectorAll(".quote-chars");
+
+  quoteChars = Array.from(quoteChars);
+
+  let userInputChars = userInput.value.split("");
+  quoteChars.forEach((char, index) => {
+    if (char.innerText == userInputChars[index]) {
+      char.classList.add("success");
+    } else if (userInputChars[index] == null) {
+      if (char.classList.contains("success")) {
+        char.classList.remove("success");
+      } else {
+        char.classList.remove("fail");
+      }
+    } else {
+      if (!char.classList.contains("fail")) {
+        mistakes += 1;
+        char.classList.add("fail");
+      }
+      document.getElementById("mistakes").innerText = mistakes;
+    }
+    let check = quoteChars.every((element) => {
+      return element.classList.contains("success");
+    });
+    if (check) {
+      displayResult();
+    }
+  });
+});
+
 const startTest = () => {
   mistakes = 0;
   timer = "";
