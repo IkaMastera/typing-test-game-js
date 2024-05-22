@@ -18,6 +18,14 @@ const renderNewQuote = async () => {
   quoteSection.innerHTML += arr.join("");
 };
 
+const startTest = () => {
+  mistakes = 0;
+  timer = "";
+  userInput.disabled = false;
+  document.getElementById("start-test").style.display = "none";
+  document.getElementById("stop-test").style.display = "block";
+};
+
 window.onload = () => {
   userInput.value = "";
   document.getElementById("start-test").style.display = "block";
